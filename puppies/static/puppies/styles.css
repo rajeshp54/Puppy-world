@@ -1,0 +1,209 @@
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* --------------------- */
+/* Form Page Styling     */
+/* --------------------- */
+
+.puppy-form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 40px;
+    background: #fef1f1; /* soft pink background */
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Form heading */
+h2 {
+    color: #2b7a4b;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+form label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    text-align: left;
+    display: block;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #ffffff;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* --------------------- */
+/* List Page Styling     */
+/* --------------------- */
+
+.puppy-container {
+    width: 90%;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+}
+
+/* Search form input */
+.search-form input {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+thead {
+    background-color: #212529;
+    color: white;
+}
+
+th, td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #eef2f7;
+}
+
+img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Contact link */
+.contact-link {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Badge styles */
+.badge-sale {
+    background-color: #dc3545;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.badge-buy {
+    background-color: #17a2b8;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+/* --------------------- */
+/* Utility Classes       */
+/* --------------------- */
+
+.card {
+    border-radius: 12px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    font-weight: bold;
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .puppy-form-container {
+        padding: 25px;
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    button {
+        font-size: 15px;
+    }
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff !important;
+  text-shadow: 1px 1px 2px #333;
+  transition: transform 0.2s ease-in-out;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+  text-decoration: underline;
+}

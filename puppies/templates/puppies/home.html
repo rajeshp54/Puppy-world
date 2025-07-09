@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="mb-4 text-primary">🐾 Welcome to Puppy World!</h1>
+
+    {% if user.is_authenticated %}
+        <h4 class="mb-3">Hello, {{ user.username }}!</h4>
+        <p class="lead">Adopt, register, and browse adorable puppies!</p>
+        <a href="{% url 'add_puppy' %}" class="btn btn-success btn-lg m-2">➕ Register a Puppy</a>
+        <a href="{% url 'puppy_list' %}" class="btn btn-primary btn-lg m-2">📋 View Puppy List</a>
+    {% else %}
+        <p class="lead">Please <a href="{% url 'login' %}">login</a> to get started!</p>
+    {% endif %}
+</div>
+{% endblock %}

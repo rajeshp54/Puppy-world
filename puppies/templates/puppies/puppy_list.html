@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'puppies/styles.css' %}">
+
+<div class="puppy-container">
+    <h2>🐶 Your Favourite Puppies</h2>
+
+    <input type="text" id="searchInput" placeholder="Search by breed..." class="form-control my-3">
+    <div id="searchResults" class="mb-3"></div>
+
+    <a href="{% url 'add_puppy' %}" class="btn btn-success mb-3">➕ Add Puppy</a>
+
+    <table class="table table-bordered table-striped" id="puppyTable">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Breed</th>
+                <th>Age (Years)</th>
+                <th>Age (Months)</th>
+                <th>Location</th>
+                <th>KCI Certificate</th>
+                <th>Purpose</th>
+                <th>Contact</th>
+            </tr>
+        </thead>
+        <tbody id="puppyTableBody">
+            {% for puppy in puppies %}
+            <tr>
+                <td>
+                    {% if puppy.image %}
+                        <img src="{{ puppy.image.url }}" alt="puppy image" style="width: 100px;">
+                    {% else %}
+                        <img src="{% static 'puppies/default.png' %}" alt="default image" style="width: 100px;">
+                    {% endif %}
+                </td>
+                <td>{{ puppy.breed }}</td>
+                <td>{{ puppy.age_year }}</td>
+                <td>{{ puppy.age_month }}</td>
+                <td>{{ puppy.location }}</td>
+                <td>{% if puppy.kci_certificate %}
+                <a href="{{ puppy.kci_certificate.url }}" target="_blank" class="btn btn-sm btn-primary">View</a>
+                {% elif puppy.has_kci_certificate %}
+                <span class="badge bg-success">Yes</span>
+                {% else %}
+                <span class="text-muted">No</span>
+                {% endif %}
+                 </td>
+
+                <td>{{ puppy.purpose }}</td>
+                <td><a href="tel:{{ puppy.contact }}" class="contact-link">{{ puppy.contact }}</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No puppies found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+document.getElementById('searchInput').addEventListener('input', function () {
+    const query = this.value.trim();
+    const resultsDiv = document.getElementById('searchResults');
+    const table = document.getElementById('puppyTable');
+
+    if (query === "") {
+        resultsDiv.innerHTML = "";
+        table.style.display = "table"; // Show table
+        return;
+    }
+
+    fetch(`/puppy/search/?q=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(data => {
+            resultsDiv.innerHTML = "";
+            table.style.display = "none"; // Hide table during search
+
+            if (data.results.length === 0) {
+                resultsDiv.innerHTML = "<p>No results found.</p>";
+                return;
+            }
+
+            data.results.forEach(item => {
+                resultsDiv.innerHTML += `
+                    <div class="search-item" style="margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #ccc;">
+                        <img src="${item.image_url}" alt="${item.breed}" height="60" style="margin-right: 10px;">
+                        <strong>${item.breed}</strong> - ${item.age_year} yrs, ${item.age_month} months - ${item.location}<br>
+                        🏷️ ${item.purpose} | 📞 <a href="tel:${item.contact}">${item.contact}</a>
+                    </div>
+                `;
+            });
+        });
+});
+</script>
+{% endblock %}

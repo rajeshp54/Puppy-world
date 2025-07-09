@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search Puppies</title>
+  <link rel="stylesheet" href="{% static 'puppies/styles.css' %}">
+</head>
+<body>
+  <div class="puppy-form-container">
+    <h2>Search for Puppies</h2>
+    <form method="get">
+      <input type="text" name="breed" placeholder="Enter Breed">
+      <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+      <div class="puppy-container">
+        <h3>Results:</h3>
+        {% for puppy in results %}
+          <p>{{ puppy.owner_name }} - {{ puppy.breed }} (Age: {{ puppy.age_year }} yrs, {{ puppy.age_month }} months)</p>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No results found.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

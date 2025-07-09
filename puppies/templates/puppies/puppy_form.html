@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg border-primary">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">🐾 Add a Cute Puppy</h4>
+        </div>
+        <div class="card-body bg-light">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label text-primary">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}
+                            <div class="form-text">{{ field.help_text }}</div>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-success">➕ Submit Puppy</button>
+                <a href="{% url 'puppy_list' %}" class="btn btn-secondary ms-2">🔙 Back</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

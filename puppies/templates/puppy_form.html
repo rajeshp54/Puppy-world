@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="puppy-form-outer py-5">
+    <div class="puppy-form-container shadow">
+        <h2 class="form-title mb-4">🐾 Add Your Puppy</h2>
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                Please correct the errors below.
+            </div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary mt-3 w-100">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
